@@ -185,8 +185,8 @@ NAN_METHOD(inject) {
         return;
     }
 
-    String::Utf8Value arg0(info[0]->ToString(Nan::GetCurrentContext()));
-    String::Utf8Value arg1(info[1]->ToString(Nan::GetCurrentContext()));
+    String::Utf8Value arg0(info[0]->ToString(info.GetIsolate()));
+    String::Utf8Value arg1(info[1]->ToString(info.GetIsolate()));
 
     if (!(*arg0) || !(*arg1)) {
         return;
