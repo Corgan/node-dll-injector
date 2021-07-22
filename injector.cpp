@@ -216,8 +216,9 @@ NAN_METHOD(injectPID) {
         return;
     }
     v8::Isolate* isolate = info.GetIsolate();
+    v8::Uint32Value val(isolate, info[0]);
 
-    DWORD arg0(isolate, info[0]->Uint32Value());
+    DWORD arg0(val);
     v8::String::Utf8Value arg1(isolate, info[1]);
 
     if (!(*arg1)) {
@@ -264,8 +265,9 @@ NAN_METHOD(isProcessRunningPID) {
         return;
     }
     v8::Isolate* isolate = info.GetIsolate();
+    v8::Uint32Value val(isolate, info[0]);
 
-    DWORD arg(isolate, info[0]->Uint32Value());
+    DWORD arg(val);
 
     bool val = isProcessRunningInternalPID(arg);
 
