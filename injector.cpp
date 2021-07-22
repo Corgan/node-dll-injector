@@ -185,8 +185,10 @@ NAN_METHOD(inject) {
         return;
     }
     
-    String::Utf8Value arg0(info[0])
-    String::Utf8Value arg1(info[1])
+    v8::Isolate* isolate = info.GetIsolate();
+    
+    v8::String arg0(isolate, info[0])
+    v8::String arg1(isolate, info[1])
 
     if (!(*arg0) || !(*arg1)) {
         return;
