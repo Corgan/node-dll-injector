@@ -185,8 +185,8 @@ NAN_METHOD(inject) {
         return;
     }
     
-    v8::Local<v8::String> arg0 = info[0]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>());
-    v8::Local<v8::String> arg1 = info[1]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>());
+    String::Utf8Value arg0(info[0])
+    String::Utf8Value arg1(info[1])
 
     if (!(*arg0) || !(*arg1)) {
         return;
