@@ -212,12 +212,13 @@ NAN_METHOD(injectPID) {
     }
     if (!info[0]->IsNumber() || !info[1]->IsString()) {
         Local<Int32> res = Nan::New(9);
-    info.GetReturnValue().Set(res);
+        info.GetReturnValue().Set(res);
         return;
     }
+    v8::Isolate* isolate = info.GetIsolate();
 
-    DWORD arg0(info[0]->Uint32Value());
-    String::Utf8Value arg1(info[1]->ToString(Nan::GetCurrentContext()));
+    DWORD arg0(isolate, info[0]);
+    v8::String::Utf8Value arg1(isolate, info[1]);
 
     if (!(*arg1)) {
         Local<Int32> res = Nan::New(10);
@@ -239,8 +240,9 @@ NAN_METHOD(isProcessRunning) {
     if (!info[0]->IsString()) {
         return;
     }
+    v8::Isolate* isolate = info.GetIsolate();
 
-    String::Utf8Value arg(info[0]->ToString());
+    v8::String::Utf8Value arg(isolate, info[0]);
 
     if (!(*arg)) {
         return;
