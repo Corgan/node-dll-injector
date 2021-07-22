@@ -185,8 +185,8 @@ NAN_METHOD(inject) {
         return;
     }
 
-    String::Utf8Value arg0(info[0]->ToString());
-    String::Utf8Value arg1(info[1]->ToString());
+    String::Utf8Value arg0(info[0]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()););
+    String::Utf8Value arg1(info[1]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()););
 
     if (!(*arg0) || !(*arg1)) {
         return;
@@ -215,7 +215,7 @@ NAN_METHOD(injectPID) {
     }
 
     DWORD arg0(info[0]->Uint32Value());
-    String::Utf8Value arg1(info[1]->ToString());
+    String::Utf8Value arg1(info[1]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()));
 
     if (!(*arg1)) {
         Local<Int32> res = Nan::New(10);
