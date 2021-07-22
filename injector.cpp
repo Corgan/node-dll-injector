@@ -184,9 +184,9 @@ NAN_METHOD(inject) {
     if (!info[0]->IsString() || !info[1]->IsString()) {
         return;
     }
-
-    String::Utf8Value arg0(info[0]->ToString(info.GetIsolate()));
-    String::Utf8Value arg1(info[1]->ToString(info.GetIsolate()));
+    
+    v8::Local<v8::String> arg0 = info[0]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>());
+    v8::Local<v8::String> arg1 = info[1]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>());
 
     if (!(*arg0) || !(*arg1)) {
         return;
